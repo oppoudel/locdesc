@@ -24,7 +24,7 @@ function AttributeList({ attr }) {
   });
 
   return (
-    <Table celled striped>
+    <Table striped>
       <Table.Body>
         {Object.keys(features)?.map((item, i) => (
           <Table.Row key={i}>

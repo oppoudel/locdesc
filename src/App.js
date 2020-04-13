@@ -11,10 +11,11 @@ function App() {
   };
   return (
     <div>
-      <h2
+      <header
         style={{
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
           textAlign: 'center',
           backgroundColor: '#161e2e',
           color: '#fff',
@@ -27,8 +28,8 @@ function App() {
           alt="logo"
           width="40px"
         />
-        <span style={{ paddingLeft: '2rem' }}>Location Description</span>
-      </h2>
+        <h1 style={{ paddingLeft: '2rem', margin: 0 }}>Location Description</h1>
+      </header>
       <Container>
         <Grid columns={2} container stackable style={{ marginTop: '2rem' }}>
           <Grid.Row>

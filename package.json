@@ -15,6 +15,7 @@
     "esri-loader": "^2.14.0",
     "lodash.debounce": "^4.0.8",
     "match-sorter": "^4.1.0",
+    "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -41,5 +42,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://arcgisportal.baltimorepolice.org/locdesc"
 }
