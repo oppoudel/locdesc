@@ -31,11 +31,17 @@ function App() {
         <h1 style={{ paddingLeft: '2rem', margin: 0 }}>Location Description</h1>
       </header>
       <Container>
-        <Grid columns={2} container stackable style={{ marginTop: '2rem' }}>
+        <Grid stackable style={{ marginTop: '1rem' }}>
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column
+              mobile={16}
+              tablet={16}
+              computer={5}
+              widescreen={4}
+              style={{ marginTop: '2rem' }}
+            >
               <Geocoder updateXY={onXYupdate} />
-              <div style={{ marginTop: '3rem' }}>
+              <div style={{ marginTop: '2rem' }}>
                 {mapCenter ? (
                   <LocationDetails center={mapCenter} />
                 ) : (
@@ -46,7 +52,13 @@ function App() {
                 )}
               </div>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column
+              mobile={16}
+              tablet={16}
+              computer={11}
+              widescreen={12}
+              style={{ marginTop: '2rem' }}
+            >
               <EsriMap center={mapCenter} updateXY={onXYupdate} />
             </Grid.Column>
           </Grid.Row>
