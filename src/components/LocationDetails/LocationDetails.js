@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import NProgress from 'nprogress';
+import { request } from '@esri/arcgis-rest-request';
 import AttributeList from './AttributeList';
 
 function LocationDetails({ center }) {
   const { x, y } = center;
+
   const [attributes, setAttributes] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       NProgress.start();
       try {
-        const res = await fetch(
-          `https://arcgisportal.baltimorepolice.org/gis/rest/services/Applications/LocationDescription/MapServer/identify?geometry=x%3A+${x}%2C+y%3A+${y}&geometryType=esriGeometryPoint&sr=4326&layers=visible&tolerance=0&mapExtent=-75%2C+37%2C+-79%2C+39&imageDisplay=600%2C550%2C96&returnGeometry=false&f=pjson`,
+        const params = {
+          geometry: { x, y },
+          geometryType: 'esriGeometryPoint',
+          layers: 'visible',
+          sr: 4326,
+          tolerance: 0,
+          mapExtent: '-75,+37,+-79,+39',
+          imageDisplay: '600,550,96',
+          returnGeometry: false,
+          f: 'json',
+        };
+        const res = await request(
+          `https://arcgisportal.baltimorepolice.org/gis/rest/services/Applications/LocationDescription/MapServer/identify`,
+          { params },
         );
-        const attr = await res.json();
-        setAttributes(attr.results);
+        setAttributes(res.results);
       } catch (error) {
         console.log(error);
       }

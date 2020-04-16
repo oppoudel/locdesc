@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
@@ -37,8 +40,12 @@
       }
 
       body {
-        font-family: 'Raleway', serif;
         background-color: #efefef;
+      }
+      .esri-view-width-xsmall
+        .esri-expand--auto
+        .esri-expand__container--expanded {
+        z-index: 100 !important;
       }
     </style>
   </head>
