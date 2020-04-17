@@ -1,10 +1,8 @@
 import React from 'react';
 import Downshift from 'downshift';
 import { geocode } from '@esri/arcgis-rest-geocoder';
-
 import matchSorter from 'match-sorter';
 import {
-  Label,
   Menu,
   ControllerButton,
   Input,
@@ -20,7 +18,6 @@ export default function Search({ updateXY }) {
     if (selectedItem) {
       const { magicKey } = selectedItem;
       geocode({ magicKey, maxLocations: 1 }).then((res) => {
-        console.log(res.candidates);
         const { x, y } = res.candidates[0].location;
         updateXY(x, y);
       });
@@ -46,7 +43,6 @@ export default function Search({ updateXY }) {
         highlightedIndex,
         isOpen,
         inputValue,
-        getLabelProps,
         clearSelection,
         getToggleButtonProps,
         getMenuProps,
@@ -90,7 +86,7 @@ export default function Search({ updateXY }) {
                       }
 
                       if (error) {
-                        return <Item disabled>Error! ${error}</Item>;
+                        return <Item disabled>Error! {error}</Item>;
                       }
 
                       if (!data.length) {

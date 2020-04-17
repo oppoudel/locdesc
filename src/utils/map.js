@@ -49,8 +49,9 @@ export async function loadMap(element, updateXY) {
       }),
     });
 
-    // Add widget to the top right corner of the view
     view.ui.add(expand, 'top-right');
+
+    //run updateXY on map click
     view.on('click', (e) =>
       updateXY(e.mapPoint.longitude, e.mapPoint.latitude),
     );
