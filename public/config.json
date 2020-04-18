@@ -1,0 +1,29 @@
+{
+  "mapServiceUrl": "https://arcgisportal.baltimorepolice.org/gis/rest/services/Applications/LocationDescription/MapServer",
+  "layers": [
+    {
+      "layerId": 0,
+      "attributes": ["Police District", "Sector", "Post"],
+      "values": {
+        "Police District": "District",
+        "Sector": "Sector",
+        "Post": "Area"
+      }
+    },
+    {
+      "layerId": 1,
+      "attributes": ["Neighborhood"],
+      "values": { "Neighborhood": "Name" }
+    },
+    {
+      "layerId": 2,
+      "attributes": ["Micro Zone Patrol"],
+      "values": { "Micro Zone Patrol": "FullName" }
+    },
+    {
+      "layerId": 3,
+      "attributes": ["Micro Zone DAT"],
+      "values": { "Micro Zone DAT": "FullName" }
+    }
+  ]
+}

@@ -1,26 +1,25 @@
 import React from 'react';
 import { Table, Header } from 'semantic-ui-react';
+import useData from './useData';
 
-function AttributeList({ attr }) {
+function AttributeList({ center, config }) {
+  const { mapServiceUrl, layers } = config;
+  const { attributes } = useData(center, mapServiceUrl);
+  const combineAttributes = (result, layer) =>
+    layer.attributes.reduce(
+      (acc, attr) => ({
+        ...acc,
+        [attr]: result.attributes[layer.values[attr]],
+      }),
+      {},
+    );
   let features = {};
-  attr.forEach((result) => {
-    if (result.layerId === 0) {
-      features = {
-        ...features,
-        'Police District': result.attributes.District,
-        Sector: result.attributes.Sector,
-        Post: result.attributes.Area,
-      };
-    }
-    if (result.layerId === 1) {
-      features = { ...features, Neighborhood: result.value };
-    }
-    if (result.layerId === 2) {
-      features = { ...features, 'Micro Zone Patrol': result.value };
-    }
-    if (result.layerId === 3) {
-      features = { ...features, 'Micro Zone DAT': result.value };
-    }
+  attributes.forEach((result) => {
+    layers.forEach((layer) => {
+      if (result.layerId === layer.layerId) {
+        features = { ...features, ...combineAttributes(result, layer) };
+      }
+    });
   });
 
   return (

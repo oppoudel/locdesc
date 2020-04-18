@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Geocoder from './components/Geocoder/Geocoder';
 import EsriMap from './components/EsriMap';
-import LocationDetails from './components/LocationDetails/LocationDetails';
+import AttributeList from './components/LocationDetails/AttributeList';
 import { Container, Message, Grid } from 'semantic-ui-react';
+import { getConfig } from './utils/request';
 
 function App() {
   const [mapCenter, setMapCenter] = useState(null);
+  const [config, setConfig] = useState(null);
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const config = await getConfig();
+      setConfig(config);
+    };
+    fetchConfig();
+  }, []);
   const onXYupdate = (x, y) => {
     setMapCenter({ x, y });
   };
@@ -43,7 +52,7 @@ function App() {
               <Geocoder updateXY={onXYupdate} />
               <div style={{ marginTop: '2rem' }}>
                 {mapCenter ? (
-                  <LocationDetails center={mapCenter} />
+                  <AttributeList center={mapCenter} config={config} />
                 ) : (
                   <Message error>
                     Please search for Baltimore City address above or click on

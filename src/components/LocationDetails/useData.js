@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import NProgress from 'nprogress';
 import { request } from '@esri/arcgis-rest-request';
-import AttributeList from './AttributeList';
 
-function LocationDetails({ center }) {
+function useData(center, url) {
   const { x, y } = center;
 
   const [attributes, setAttributes] = useState([]);
@@ -22,10 +21,7 @@ function LocationDetails({ center }) {
           returnGeometry: false,
           f: 'json',
         };
-        const res = await request(
-          `https://arcgisportal.baltimorepolice.org/gis/rest/services/Applications/LocationDescription/MapServer/identify`,
-          { params },
-        );
+        const res = await request(`${url}/identify`, { params });
         setAttributes(res.results);
       } catch (error) {
         console.log(error);
@@ -34,7 +30,7 @@ function LocationDetails({ center }) {
     };
     fetchData();
   }, [x, y]);
-  return <AttributeList attr={attributes} />;
+  return { attributes };
 }
 
-export default LocationDetails;
+export default useData;
