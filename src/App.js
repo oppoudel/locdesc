@@ -7,10 +7,11 @@ import { getConfig } from './utils/request';
 
 function App() {
   const [mapCenter, setMapCenter] = useState(null);
-  const [config, setConfig] = useState(null);
+  const [config, setConfig] = useState({ title: 'Location Description' });
   useEffect(() => {
     const fetchConfig = async () => {
       const config = await getConfig();
+      document.title = config.title;
       setConfig(config);
     };
     fetchConfig();
@@ -37,7 +38,7 @@ function App() {
           alt="logo"
           width="40px"
         />
-        <h1 style={{ paddingLeft: '2rem', margin: 0 }}>Location Description</h1>
+        <h1 style={{ paddingLeft: '2rem', margin: 0 }}>{config?.title}</h1>
       </header>
       <Container>
         <Grid stackable style={{ marginTop: '1rem' }}>
