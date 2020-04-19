@@ -4,7 +4,6 @@ import { request } from '@esri/arcgis-rest-request';
 
 function useData(center, url) {
   const { x, y } = center;
-
   const [attributes, setAttributes] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +28,7 @@ function useData(center, url) {
       NProgress.done();
     };
     fetchData();
-  }, [x, y]);
+  }, [x, y, url]);
   return { attributes };
 }
 

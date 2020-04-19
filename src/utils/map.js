@@ -1,5 +1,6 @@
 import { loadModules } from 'esri-loader';
 import NProgress from 'nprogress';
+import { getConfig } from './request';
 
 // NOTE: module, not global scope
 let _Graphic;
@@ -7,6 +8,7 @@ let _Graphic;
 // lazy load the ArcGIS API modules and CSS
 // then create a new map view at an element
 export async function loadMap(element, updateXY) {
+  const config = await getConfig();
   NProgress.start();
   const [WebMap, MapView, Graphic, LayerList, Expand] = await loadModules(
     [
@@ -30,7 +32,7 @@ export async function loadMap(element, updateXY) {
   // create the Map
   const map = new WebMap({
     portalItem: {
-      id: 'be85bcc547bd46e5904edcdad422c36b',
+      id: config.webMapId,
     },
   });
 

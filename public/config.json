@@ -1,4 +1,5 @@
 {
+  "webMapId": "be85bcc547bd46e5904edcdad422c36b",
   "mapServiceUrl": "https://arcgisportal.baltimorepolice.org/gis/rest/services/Applications/LocationDescription/MapServer",
   "layers": [
     {
