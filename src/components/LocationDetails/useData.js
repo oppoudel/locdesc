@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import NProgress from 'nprogress';
 import { request } from '@esri/arcgis-rest-request';
 
+//return the result of identify when the x, y changes
+
 function useData(center, url) {
   const { x, y } = center;
   const [attributes, setAttributes] = useState([]);

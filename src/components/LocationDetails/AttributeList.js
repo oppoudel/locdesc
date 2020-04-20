@@ -5,15 +5,20 @@ import useData from './useData';
 function AttributeList({ center, config }) {
   const { mapServiceUrl, layers } = config;
   const { attributes } = useData(center, mapServiceUrl);
-  const combineAttributes = (result, layer) =>
-    layer.attributes.reduce(
+
+  const combineAttributes = (result, layer) => {
+    const fields = layer.fields;
+    return Object.keys(fields).reduce(
       (acc, attr) => ({
         ...acc,
-        [attr]: result.attributes[layer.values[attr]],
+        [attr]: result.attributes[fields[attr]],
       }),
       {},
     );
+  };
+
   let features = {};
+
   attributes.forEach((result) => {
     layers.forEach((layer) => {
       if (result.layerId === layer.layerId) {
