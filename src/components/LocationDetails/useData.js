@@ -14,7 +14,7 @@ function useData(center, url) {
         const params = {
           geometry: { x, y },
           geometryType: 'esriGeometryPoint',
-          layers: 'visible',
+          layers: 'all',
           sr: 4326,
           tolerance: 0,
           mapExtent: '-75,+37,+-79,+39',
@@ -24,6 +24,7 @@ function useData(center, url) {
         };
         const res = await request(`${url}/identify`, { params });
         setAttributes(res.results);
+        console.log(res.results);
       } catch (error) {
         console.log(error);
       }
