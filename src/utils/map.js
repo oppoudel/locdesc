@@ -54,9 +54,10 @@ export async function loadMap(element, updateXY) {
     view.ui.add(expand, 'top-right');
 
     //run updateXY on map click
-    view.on('click', (e) =>
-      updateXY(e.mapPoint.longitude, e.mapPoint.latitude),
-    );
+    view.on('click', (e) => {
+      const location = { x: e.mapPoint.longitude, y: e.mapPoint.latitude };
+      updateXY(location);
+    });
     view.on('mouse-wheel', function (evt) {
       evt.stopPropagation();
     });

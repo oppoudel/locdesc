@@ -18,9 +18,11 @@ export default function Search({ updateXY }) {
     if (selectedItem) {
       const { magicKey } = selectedItem;
       geocode({ magicKey, maxLocations: 1 }).then((res) => {
-        const { x, y } = res.candidates[0].location;
-        updateXY(x, y);
+        const location = res.candidates[0].location;
+        updateXY(location);
       });
+    } else {
+      updateXY(null);
     }
   };
   const getItems = (allItems, filter) => {

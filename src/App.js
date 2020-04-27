@@ -16,9 +16,15 @@ function App() {
     };
     fetchConfig();
   }, []);
-  const onXYupdate = (x, y) => {
-    setMapCenter({ x, y });
+  const onXYupdate = (location) => {
+    if (location) {
+      const { x, y } = location;
+      setMapCenter({ x, y });
+    } else {
+      setMapCenter(null);
+    }
   };
+
   return (
     <div>
       <header
@@ -33,11 +39,7 @@ function App() {
           borderBottom: '1px solid #ccc',
         }}
       >
-        <img
-          src="https://arcgisportal.baltimorepolice.org/bpdgis/sharing/rest/content/items/b6d54cd3249b4452a420914af38c5d7e/data"
-          alt="logo"
-          width="40px"
-        />
+        <img src="/logo.png" alt="logo" width="40px" />
         <h1 style={{ paddingLeft: '2rem', margin: 0 }}>{config?.title}</h1>
       </header>
       <Container>

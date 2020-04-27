@@ -31,7 +31,7 @@ function useData(center, url) {
       NProgress.done();
     };
     fetchData();
-  }, [x, y, url]);
+  }, [url, x, y]);
   return { attributes };
 }
 

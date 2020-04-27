@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, Header } from 'semantic-ui-react';
+import { isEmpty } from 'lodash';
+import { Table, Header, Message } from 'semantic-ui-react';
 import useData from './useData';
 
 function AttributeList({ center, config }) {
@@ -27,7 +28,7 @@ function AttributeList({ center, config }) {
     });
   });
 
-  return (
+  return !isEmpty(features) ? (
     <Table striped>
       <Table.Body>
         {Object.keys(features)?.map((item, i) => (
@@ -40,6 +41,11 @@ function AttributeList({ center, config }) {
         ))}
       </Table.Body>
     </Table>
+  ) : (
+    <Message error>
+      Please search for Baltimore City address above or click on the map within
+      Baltimore City.
+    </Message>
   );
 }
 
