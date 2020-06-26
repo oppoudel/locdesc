@@ -6,7 +6,7 @@
     {
       "layerId": 0,
       "fields": {
-        "Police District": "District",
+        "Police District": "District_URL",
         "Sector": "Sector",
         "Post": "Area"
       }

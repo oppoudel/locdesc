@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import { isEmpty } from 'lodash';
 import { Table, Header, Message } from 'semantic-ui-react';
 import useData from './useData';
@@ -36,7 +37,7 @@ function AttributeList({ center, config }) {
             <Table.Cell>
               <Header as="h4">{item}</Header>
             </Table.Cell>
-            <Table.Cell>{features[item]}</Table.Cell>
+            <Table.Cell>{ReactHtmlParser(features[item])}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
