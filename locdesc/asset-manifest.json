@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/locdesc/static/js/main.2371c841.chunk.js",
+    "main.js.map": "/locdesc/static/js/main.2371c841.chunk.js.map",
+    "runtime-main.js": "/locdesc/static/js/runtime-main.abe0a968.js",
+    "runtime-main.js.map": "/locdesc/static/js/runtime-main.abe0a968.js.map",
+    "static/css/2.5bf0f537.chunk.css": "/locdesc/static/css/2.5bf0f537.chunk.css",
+    "static/js/2.c20dbd8e.chunk.js": "/locdesc/static/js/2.c20dbd8e.chunk.js",
+    "static/js/2.c20dbd8e.chunk.js.map": "/locdesc/static/js/2.c20dbd8e.chunk.js.map",
+    "index.html": "/locdesc/index.html",
+    "precache-manifest.253425c7a2ff63a4b7a88cf687cdd6d2.js": "/locdesc/precache-manifest.253425c7a2ff63a4b7a88cf687cdd6d2.js",
+    "service-worker.js": "/locdesc/service-worker.js",
+    "static/css/2.5bf0f537.chunk.css.map": "/locdesc/static/css/2.5bf0f537.chunk.css.map",
+    "static/js/2.c20dbd8e.chunk.js.LICENSE.txt": "/locdesc/static/js/2.c20dbd8e.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/locdesc/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.abe0a968.js",
+    "static/css/2.5bf0f537.chunk.css",
+    "static/js/2.c20dbd8e.chunk.js",
+    "static/js/main.2371c841.chunk.js"
+  ]
+}

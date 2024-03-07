@@ -1,26 +1,26 @@
-import { loadModules } from 'esri-loader';
-import NProgress from 'nprogress';
-import { getConfig } from './request';
+import { loadModules } from "esri-loader";
+import NProgress from "nprogress";
+import { getConfig } from "./request";
 
 // NOTE: module, not global scope
 let _Graphic;
 
 // lazy load the ArcGIS API modules and CSS
 // then create a new map view at an element
-export async function loadMap(element, updateXY) {
+export async function loadMap(element) {
   const config = await getConfig();
   NProgress.start();
   const [WebMap, MapView, Graphic, LayerList, Expand] = await loadModules(
     [
-      'esri/WebMap',
-      'esri/views/MapView',
-      'esri/Graphic',
-      'esri/widgets/LayerList',
-      'esri/widgets/Expand',
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/Graphic",
+      "esri/widgets/LayerList",
+      "esri/widgets/Expand",
     ],
     {
       css: true,
-    },
+    }
   );
   if (!element) {
     // component or app was likely destroyed
@@ -47,18 +47,18 @@ export async function loadMap(element, updateXY) {
       view: view,
       content: new LayerList({
         view: view,
-        container: document.createElement('div'),
+        container: document.createElement("div"),
       }),
     });
 
-    view.ui.add(expand, 'top-right');
+    view.ui.add(expand, "top-right");
 
-    //run updateXY on map click
-    view.on('click', (e) => {
-      const location = { x: e.mapPoint.longitude, y: e.mapPoint.latitude };
-      updateXY(location);
-    });
-    view.on('mouse-wheel', function (evt) {
+    // //run updateXY on map click
+    // view.on('click', (e) => {
+    //   const location = { x: e.mapPoint.longitude, y: e.mapPoint.latitude };
+    //   updateXY(location);
+    // });
+    view.on("mouse-wheel", function (evt) {
       evt.stopPropagation();
     });
 
@@ -70,7 +70,7 @@ export async function loadMap(element, updateXY) {
 
 export function addPoint(view, center) {
   if (!_Graphic) {
-    throw new Error('You must load a map before creating new graphics');
+    throw new Error("You must load a map before creating new graphics");
   }
   if (!view || !view.ready) {
     return;
@@ -79,8 +79,8 @@ export function addPoint(view, center) {
   view.graphics.removeAll();
   const { x, y } = center;
   const marker = {
-    type: 'simple-marker',
-    style: 'circle',
+    type: "simple-marker",
+    style: "circle",
     size: 12,
     color: [22, 30, 46],
     outline: {
@@ -90,7 +90,7 @@ export function addPoint(view, center) {
   };
   const pointGraphic = new _Graphic({
     geometry: {
-      type: 'point',
+      type: "point",
       x,
       y,
     },

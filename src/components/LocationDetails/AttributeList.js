@@ -1,52 +1,43 @@
-import React from 'react';
-import ReactHtmlParser from 'react-html-parser';
-import { isEmpty } from 'lodash';
-import { Table, Header, Message } from 'semantic-ui-react';
-import useData from './useData';
+import React from "react";
+import { isEmpty } from "lodash";
+import { Table, Header, Message } from "semantic-ui-react";
 
-function AttributeList({ center, config }) {
-  const { mapServiceUrl, layers } = config;
-  const { attributes } = useData(center, mapServiceUrl);
-
-  const combineAttributes = (result, layer) => {
-    const fields = layer.fields;
-    return Object.keys(fields).reduce(
-      (acc, attr) => ({
-        ...acc,
-        [attr]: result.attributes[fields[attr]],
-      }),
-      {},
-    );
-  };
-
-  let features = {};
-
-  attributes.forEach((result) => {
-    layers.forEach((layer) => {
-      if (result.layerId === layer.layerId) {
-        features = { ...features, ...combineAttributes(result, layer) };
-      }
-    });
-  });
-
-  return !isEmpty(features) ? (
+function AttributeList(attributes) {
+  const { RespondingDistrict, RespondingPost, NeighborhoodsName } =
+    attributes.attributes;
+  return !isEmpty(attributes.attributes) ? (
     <Table striped>
       <Table.Body>
-        {Object.keys(features)?.map((item, i) => (
-          <Table.Row key={i}>
-            <Table.Cell>
-              <Header as="h4">{item}</Header>
-            </Table.Cell>
-            <Table.Cell>{ReactHtmlParser(features[item])}</Table.Cell>
-          </Table.Row>
-        ))}
+        <Table.Row>
+          <Table.Cell>
+            <Header as="h4">District</Header>
+          </Table.Cell>
+          <Table.Cell>
+            <a
+              href={`https://www.baltimorepolice.org/find-my-district/${RespondingDistrict.toLowerCase()}-district`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {RespondingDistrict}
+            </a>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>
+            <Header as="h4">Post</Header>
+          </Table.Cell>
+          <Table.Cell>{RespondingPost}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>
+            <Header as="h4">Neighborhood</Header>
+          </Table.Cell>
+          <Table.Cell>{NeighborhoodsName}</Table.Cell>
+        </Table.Row>
       </Table.Body>
     </Table>
   ) : (
-    <Message error>
-      Please search for Baltimore City address above or click on the map within
-      Baltimore City.
-    </Message>
+    <Message error>Please search for Baltimore City address above.</Message>
   );
 }
 
